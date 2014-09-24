@@ -1,5 +1,6 @@
 package com.xtrader.nebulae.converter;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,13 +12,13 @@ import com.xtrader.nebulae.converter.enums.CommandTypes;
 @Log4j
 public class CommandFactory {
 	
-	public static ConverterCommand parseCommand(String str) throws InstantiationException, IllegalAccessException{
+	public static ConverterCommand parseCommand(String str) throws InstantiationException, IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException{
 		for (CommandTypes commandType : CommandTypes.values()) {
 			Pattern p = Pattern.compile(commandType.getPattern());
 			Matcher m = p.matcher(str);
 			if (m.matches()) {
 				log.debug("["+str+"] is a command");
-				return commandType.getInstance();
+				return commandType.getInstance(str);
 			}									
 		}
 		log.debug("["+str+"] is not a command");

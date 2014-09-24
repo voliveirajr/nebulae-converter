@@ -1,5 +1,8 @@
 package com.xtrader.nebulae.converter.enums;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
 import com.xtrader.nebulae.converter.commands.ConversionCmd;
 import com.xtrader.nebulae.converter.commands.ConverterCommand;
 import com.xtrader.nebulae.converter.commands.CotationCmd;
@@ -26,7 +29,9 @@ public enum CommandTypes {
 		return pattern;
 	}
 	
-	public ConverterCommand getInstance() throws InstantiationException, IllegalAccessException{
-		return clazz.newInstance();
+	public ConverterCommand getInstance(String cmdStr) throws InstantiationException, IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException{
+		Constructor<ConverterCommand> constructor = clazz.getConstructor(String.class);
+		ConverterCommand cmd = constructor.newInstance(cmdStr);
+		return cmd;
 	}
 }
