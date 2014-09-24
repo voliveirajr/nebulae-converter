@@ -3,6 +3,9 @@ package com.xtrader.nebulae.converter.util;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.xtrader.nebulae.converter.ConverterValues;
+import com.xtrader.nebulae.converter.enums.RomanAlgarisms;
+
 import lombok.extern.log4j.Log4j;
 
 @Log4j
@@ -28,6 +31,23 @@ public class ConverterUtil {
 			log.debug(romanStr +" is "+ m.matches());
 		}
 		return m.matches();		
+	}
+	
+	public static String toRoman(String[] alienArray) throws Exception{
+		StringBuilder strBuilder = new StringBuilder();
+		for (String alienStr : alienArray) {
+			if(ConverterValues.getInstance().getAlienReference().containsKey(alienStr)){
+				RomanAlgarisms romanA = ConverterValues.getInstance().getAlienReference().get(alienStr);
+				strBuilder.append(romanA.name());
+			}else{
+				log.error("You are trying to evaluate an alien value without define your Roman");
+				throw new Exception("You are trying to evaluate an alien value without define your Roman");
+			}
+		}
+		if(!ConverterUtil.romanMatch(strBuilder.toString())){
+			throw new Exception("I'm sorry dude, it should be a venusian poem, not a valid number be a venusian poem, is not a valid number");
+		}
+		return strBuilder.toString();		
 	}
 
 }

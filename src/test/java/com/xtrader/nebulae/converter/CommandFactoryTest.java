@@ -45,7 +45,9 @@ public class CommandFactoryTest {
 	
 	@Test
 	public void testCmdFactoryMaterial() throws IOException, InstantiationException, IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException{
-		String str = "glob prok Gold is 57800 Credits";
+		String str = "pish glob Gold is 57800 Credits";
+		ConverterValues.getInstance().getAlienReference().put("pish", RomanAlgarisms.X);
+		ConverterValues.getInstance().getAlienReference().put("glob", RomanAlgarisms.V);
 		Assert.assertTrue(str+" is not a valid command",CommandFactory.parseCommand(str) instanceof MaterialValueCmd);
 	}
 	@Test
