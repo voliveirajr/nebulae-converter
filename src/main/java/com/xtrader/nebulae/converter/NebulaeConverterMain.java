@@ -11,8 +11,6 @@ import com.xtrader.nebulae.converter.commands.ConverterCommand;
 @Log4j
 public class NebulaeConverterMain {
 	
-	public static final String ANSI_COLOR = "\u001B[35m";
-
 	public static void main(String[] args) {
 		// command line parameter
 		if (args.length != 1) {
@@ -28,7 +26,7 @@ public class NebulaeConverterMain {
 	        	ConverterCommand cmd;
 				try {
 					cmd = CommandFactory.parseCommand(line);
-					System.out.println(ANSI_COLOR + cmd.execute() + ANSI_COLOR);
+					System.out.println(cmd.execute());
 				} catch (Exception e) {
 					log.debug("something gone wrong");
 					System.err.println("Something gone wrong with your execution: " + e.getMessage());
