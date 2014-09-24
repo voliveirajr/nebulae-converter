@@ -9,8 +9,8 @@ import com.xtrader.nebulae.converter.commands.MaterialValueCmd;
 public enum CommandTypes {
 	
 	DEFINE("(.{1,}) is (I|V|X|L|C|D|M)$", DefinitionCmd.class),
-	COTATION("(.{1,}) (Silver|Gold|Iron) is \\d+ Credits$", CotationCmd.class),
-	MATERIAL_VALUE("how many Credits is (.{1,}) (Silver|Gold|Iron) \\?$", MaterialValueCmd.class),
+	COTATION("how many Credits is (.{1,}) (Silver|Gold|Iron) \\?$", CotationCmd.class),
+	MATERIAL_VALUE("(.{1,}) (Silver|Gold|Iron) is \\d+ Credits$", MaterialValueCmd.class),
 	CONVERSION("how much is (.{1,}) \\?$", ConversionCmd.class);
 	
 	private String pattern;
