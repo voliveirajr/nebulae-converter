@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.xtrader.nebulae.converter.enums.RomanAlgarisms;
 import com.xtrader.nebulae.converter.util.ConverterUtil;
 
 public class ConverterUtilTest {
@@ -29,6 +30,17 @@ public class ConverterUtilTest {
 		}
 				
 	}
+	
+	@Test(expected=Exception.class)
+	public void testInvalidAlienToRoman() throws Exception{
+		ConverterUtil.toRoman(new String[]{"s"});				
+	}
+	
+	@Test(expected=Exception.class)
+	public void testInvalidRomanToRoman() throws Exception{
+		ConverterValues.getInstance().getAlienReference().put("pish", RomanAlgarisms.X);
+		ConverterUtil.toRoman(new String[]{"pish", "pish", "pish", "pish"});				
+	}	
 	
 	private ArrayList<String[]> getRomans(boolean valid) throws IOException{
 		ArrayList<String[]> validRomans = new ArrayList<String[]>();		

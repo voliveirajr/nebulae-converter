@@ -17,7 +17,7 @@ public class CotationCmd extends ConverterCommand{
 
 	@Override
 	public void parse(String commandStr) throws Exception{
-		throw new NotImplementedException("TODO");
+		
 		
 	}
 	
