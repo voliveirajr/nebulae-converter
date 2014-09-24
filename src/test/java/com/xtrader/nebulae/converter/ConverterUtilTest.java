@@ -31,6 +31,13 @@ public class ConverterUtilTest {
 				
 	}
 	
+	@Test
+	public void testRomanToDecimal() throws IOException{
+		for (String[] validValue : getRomans(true)) {
+			Assert.assertTrue(ConverterUtil.romanToDecimal(validValue[1]).equals(new Integer(validValue[0])) );
+		}
+	}
+	
 	@Test(expected=Exception.class)
 	public void testInvalidAlienToRoman() throws Exception{
 		ConverterUtil.toRoman(new String[]{"s"});				

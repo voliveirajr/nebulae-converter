@@ -10,6 +10,8 @@ import com.xtrader.nebulae.converter.commands.ConverterCommand;
 
 @Log4j
 public class NebulaeConverterMain {
+	
+	public static final String ANSI_COLOR = "\u001B[35m";
 
 	public static void main(String[] args) {
 		// command line parameter
@@ -19,14 +21,14 @@ public class NebulaeConverterMain {
 			System.exit(1);
 		}
 		
-		try(BufferedReader br = new BufferedReader(new FileReader("file.txt"))) {
+		try(BufferedReader br = new BufferedReader(new FileReader(args[0]))) {
 			String line = br.readLine();
 	        while (line != null) {
 	        	log.debug("reading line: "+ line);
 	        	ConverterCommand cmd;
 				try {
 					cmd = CommandFactory.parseCommand(line);
-					cmd.execute();
+					System.out.println(ANSI_COLOR + cmd.execute() + ANSI_COLOR);
 				} catch (Exception e) {
 					log.debug("something gone wrong");
 					System.err.println("Something gone wrong with your execution: " + e.getMessage());

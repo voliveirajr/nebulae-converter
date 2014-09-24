@@ -33,6 +33,12 @@ public class ConverterUtil {
 		return m.matches();		
 	}
 	
+	/**
+	 * With an Array of alien strings finds the equivalent Roman value for that
+	 * @param alienArray
+	 * @return
+	 * @throws Exception
+	 */
 	public static String toRoman(String[] alienArray) throws Exception{
 		StringBuilder strBuilder = new StringBuilder();
 		for (String alienStr : alienArray) {
@@ -49,6 +55,24 @@ public class ConverterUtil {
 			throw new Exception("I'm sorry dude, it should be a venusian poem, not a valid number be a venusian poem, is not a valid number");
 		}
 		return strBuilder.toString();	
+	}
+	
+	public static Integer romanToDecimal(String romanStr){
+		String[] romanChars = romanStr.split("(?!^)");
+		RomanAlgarisms roman = null;
+		RomanAlgarisms romanPrev = null;
+		Integer result = 0;
+		
+		for (String rChar : romanChars) {
+			roman = RomanAlgarisms.valueOf(rChar);
+			result += roman.getDecimal();
+			if(romanPrev != null && romanPrev.getDecimal() < roman.getDecimal()){
+				result -= (2*romanPrev.getDecimal());
+			}
+			romanPrev = roman;
+		}
+		log.debug(result+ " evaluated");
+		return result;		
 	}
 
 }
