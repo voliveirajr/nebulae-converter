@@ -1,7 +1,5 @@
 package com.xtrader.nebulae.converter;
 
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 
 import org.junit.Assert;
@@ -24,13 +22,13 @@ public class CommandFactoryTest {
 	}
 	
 	@Test
-	public void testCmdFactoryDefinition() throws IOException, InstantiationException, IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException{
+	public void testCmdFactoryDefinition() throws Exception{
 		String str = "pish is X";
 		Assert.assertTrue(str+" is not a valid command",CommandFactory.parseCommand(str) instanceof DefinitionCmd);
 	}
 	
 	@Test
-	public void testCmdFactoryConversion() throws IOException, InstantiationException, IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException{
+	public void testCmdFactoryConversion() throws Exception{
 		String str = "how much is pish glob ?";
 		ConverterValues.getInstance().getAlienReference().put("pish", RomanAlgarisms.X);
 		ConverterValues.getInstance().getAlienReference().put("glob", RomanAlgarisms.V);
@@ -38,23 +36,22 @@ public class CommandFactoryTest {
 	}
 	
 	@Test
-	public void testCmdFactoryCotation() throws IOException, InstantiationException, IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException{
+	public void testCmdFactoryCotation() throws Exception{
 		String str = "how many Credits is glob prok Iron ?";
 		Assert.assertTrue(str+" is not a valid command",CommandFactory.parseCommand(str) instanceof CotationCmd);
 	}
 	
 	@Test
-	public void testCmdFactoryMaterial() throws IOException, InstantiationException, IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException{
+	public void testCmdFactoryMaterial() throws Exception{
 		String str = "pish glob Gold is 57800 Credits";
 		ConverterValues.getInstance().getAlienReference().put("pish", RomanAlgarisms.X);
 		ConverterValues.getInstance().getAlienReference().put("glob", RomanAlgarisms.V);
 		Assert.assertTrue(str+" is not a valid command",CommandFactory.parseCommand(str) instanceof MaterialValueCmd);
 	}
 	@Test
-	public void testCmdFactoryInvalid() throws IOException, InstantiationException, IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException{
+	public void testCmdFactoryInvalid() throws Exception{
 		String str = "salsifufu";
 		Assert.assertTrue(str+" is not a invalid command",null == CommandFactory.parseCommand(str));
-
 	}
 
 }

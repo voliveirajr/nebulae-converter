@@ -12,13 +12,22 @@ import com.xtrader.nebulae.converter.enums.CommandTypes;
 @Log4j
 public class CommandFactory {
 	
-	public static ConverterCommand parseCommand(String str) throws InstantiationException, IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException{
+	public static ConverterCommand parseCommand(String str) throws Exception {
 		for (CommandTypes commandType : CommandTypes.values()) {
 			Pattern p = Pattern.compile(commandType.getPattern());
 			Matcher m = p.matcher(str);
 			if (m.matches()) {
 				log.debug("["+str+"] is a command");
-				return commandType.getInstance(str);
+				try {
+					return commandType.getInstance(str);
+				} catch (InstantiationException | IllegalAccessException
+						| NoSuchMethodException | SecurityException
+						| IllegalArgumentException | InvocationTargetException e) {
+					
+					e.printStackTrace();
+					log.error("problems while parsing your command");
+					throw new Exception("problems while parsing your command", e);
+				}
 			}									
 		}
 		log.debug("["+str+"] is not a command");
