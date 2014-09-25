@@ -2,8 +2,8 @@ package com.xtrader.nebulae.converter;
 
 import java.net.URL;
 
+import org.junit.Ignore;
 import org.junit.Test;
-
 public class NebulaeConverterMainTest {
 	
 	@Test

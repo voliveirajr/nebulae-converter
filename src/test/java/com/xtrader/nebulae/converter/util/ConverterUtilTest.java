@@ -1,4 +1,4 @@
-package com.xtrader.nebulae.converter;
+package com.xtrader.nebulae.converter.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.xtrader.nebulae.converter.ConverterValues;
 import com.xtrader.nebulae.converter.enums.RomanAlgarisms;
 import com.xtrader.nebulae.converter.util.ConverterUtil;
 

@@ -24,7 +24,7 @@
 					<configuration>
 						<archive>
 							<manifest>
-								<mainClass>com.xtrader.nebulae.converter</mainClass>
+								<mainClass>com.xtrader.nebulae.converter.NebulaeConverterMain</mainClass>
 							</manifest>
 						</archive>
 					</configuration>

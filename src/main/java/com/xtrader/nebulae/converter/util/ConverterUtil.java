@@ -51,8 +51,8 @@ public class ConverterUtil {
 			}
 		}
 		if(!ConverterUtil.romanMatch(strBuilder.toString())){
-			log.error("I'm sorry dude, it should be a venusian poem, not a valid number be a venusian poem, is not a valid number");
-			throw new Exception("I'm sorry dude, it should be a venusian poem, not a valid number be a venusian poem, is not a valid number");
+			log.error("I'm sorry dude, it should be a venusian poem, not a valid number");
+			throw new Exception("I'm sorry dude, it should be a venusian poem, not a valid number");
 		}
 		return strBuilder.toString();	
 	}
