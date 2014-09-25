@@ -5,8 +5,7 @@ import java.util.regex.Pattern;
 
 import lombok.extern.log4j.Log4j;
 
-import org.apache.commons.lang3.NotImplementedException;
-
+import com.xtrader.nebulae.converter.ConverterValues;
 import com.xtrader.nebulae.converter.enums.Material;
 import com.xtrader.nebulae.converter.util.ConverterUtil;
 @Log4j
@@ -22,7 +21,11 @@ public class MaterialValueCmd extends ConverterCommand{
 
 	@Override
 	public String execute() {
-		throw new NotImplementedException("TODO");
+		Integer decValue = ConverterUtil.romanToDecimal(romanValue);
+		float value = credits/decValue;		
+		ConverterValues.getInstance().getMaterialValue().put(material, value);
+		log.debug("the "+material+" value was defined as "+value);		
+		return "";
 	}
 
 	@Override
