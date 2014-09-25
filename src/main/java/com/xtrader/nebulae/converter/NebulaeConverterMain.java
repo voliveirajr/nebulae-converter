@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import org.apache.commons.lang3.StringUtils;
+
 import lombok.extern.log4j.Log4j;
 
 import com.xtrader.nebulae.converter.commands.ConverterCommand;
@@ -26,9 +28,16 @@ public class NebulaeConverterMain {
 	        	ConverterCommand cmd;
 				try {
 					cmd = CommandFactory.parseCommand(line);
-					System.out.println(cmd.execute());
+					if(cmd != null){
+						String response = cmd.execute();
+						if(StringUtils.isNotEmpty(response)) System.out.println(cmd.execute());						
+					}else{
+						System.out.println("I have no idea what you are talking about");
+					}
+					
 				} catch (Exception e) {
 					log.debug("something gone wrong");
+					e.printStackTrace();
 					System.err.println("Something gone wrong with your execution: " + e.getMessage());
 					System.exit(1);
 				}

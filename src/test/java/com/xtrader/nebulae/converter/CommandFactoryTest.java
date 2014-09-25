@@ -38,6 +38,8 @@ public class CommandFactoryTest {
 	@Test
 	public void testCmdFactoryCotation() throws Exception{
 		String str = "how many Credits is glob prok Iron ?";
+		ConverterValues.getInstance().getAlienReference().put("glob", RomanAlgarisms.X);
+		ConverterValues.getInstance().getAlienReference().put("prok", RomanAlgarisms.V);
 		Assert.assertTrue(str+" is not a valid command",CommandFactory.parseCommand(str) instanceof CotationCmd);
 	}
 	

@@ -24,7 +24,6 @@ public class CommandFactory {
 						| NoSuchMethodException | SecurityException
 						| IllegalArgumentException | InvocationTargetException e) {
 					
-					e.printStackTrace();
 					log.error("problems while parsing your command");
 					throw new Exception("problems while parsing your command", e);
 				}

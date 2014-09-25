@@ -16,7 +16,7 @@ public class MaterialValueCmd extends ConverterCommand{
 	}
 	
 	String romanValue;
-	Integer credits;
+	Float credits;
 	Material material;
 
 	@Override
@@ -46,7 +46,7 @@ public class MaterialValueCmd extends ConverterCommand{
 		p = Pattern.compile("\\d+");
 		m = p.matcher(commandStr);
 		if(m.find()){
-			credits = new Integer(m.group());
+			credits = new Float(m.group());
 			log.debug("Found Credits: "+credits);
 		}		
 	}

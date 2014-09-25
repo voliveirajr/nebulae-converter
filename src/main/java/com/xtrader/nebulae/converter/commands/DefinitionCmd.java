@@ -10,12 +10,12 @@ import com.xtrader.nebulae.converter.enums.RomanAlgarisms;
 @Log4j
 public class DefinitionCmd extends ConverterCommand {
 	
+	String alien;
+	RomanAlgarisms roman;
+	
 	public DefinitionCmd(String commandStr) throws Exception {
 		super(commandStr);
 	}
-
-	String alien;
-	RomanAlgarisms roman;
 
 	@Override
 	public String execute(){		

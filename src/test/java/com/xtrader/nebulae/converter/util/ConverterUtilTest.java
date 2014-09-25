@@ -4,15 +4,24 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import com.xtrader.nebulae.converter.ConverterValues;
+import com.xtrader.nebulae.converter.enums.Material;
 import com.xtrader.nebulae.converter.enums.RomanAlgarisms;
 import com.xtrader.nebulae.converter.util.ConverterUtil;
 
 public class ConverterUtilTest {
+	
+	@Before
+	public void cleanupValues(){
+		ConverterValues.getInstance().setMaterialValue(new HashMap<Material, Float>(0));
+		ConverterValues.getInstance().setAlienReference(new HashMap<String, RomanAlgarisms>(0));
+	}
 	
 	@Test
 	public void testValidRoman() throws IOException{
